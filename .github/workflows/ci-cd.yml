@@ -26,7 +26,7 @@ jobs:
           flutter-version: '3.0.5'
           channel: 'stable'
           cache: true
-          cache-key: flutter-:os:-:channel:-:version:-:arch:-:hash:-${{ hashFiles('**/pubspec.lock') }}
+          cache-key: flutter-${{ hashFiles('**/pubspec.lock') }}
 
       - name: test 
         run: flutter test
@@ -34,6 +34,5 @@ jobs:
       - name: build
         run: |
           flutter pub get
-          flutter build apk --release --split-per-abi
           flutter build appbundle
     
