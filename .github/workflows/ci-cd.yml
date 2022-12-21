@@ -18,6 +18,13 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.0.5'
+          channel: 'stable'
+      - name: test 
+        run: flutter test
       - name: Cache Flutter
         id: cache-flutter
         uses: actions/cache@v3.2.0-beta.1
@@ -29,13 +36,7 @@ jobs:
         name: List the state of flutter
         continue-on-error: true
         run: echo "cache not found"
-
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.0.5'
-          channel: 'stable'
-      - name: test 
-        run: flutter test
+        
       - name: build
         run: |
           flutter pub get
