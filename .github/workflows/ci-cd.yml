@@ -24,6 +24,12 @@ jobs:
         with:
           path: /opt/hostedtoolcache/flutter
           key: ${{ runner.OS }}-flutter-install-cache-3.0.5
+      
+      - if: ${{ steps.cache-flutter.outputs.cache-hit != 'true' }}
+        name: List the state of flutter
+        continue-on-error: true
+        run: echo "cache not found"
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.0.5'
