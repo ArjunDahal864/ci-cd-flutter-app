@@ -10,21 +10,29 @@ on:
   
 
 jobs:
-  testbuild:
+  build:
     runs-on: ubuntu-latest
+    yaml
+name: Publish Docker image
+on:
+  push:
+    branches:
+      - main
     steps:
-      - name: test
+      - 
+        name: test
         uses: actions/checkout@v3
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.0.5'
           channel: 'stable'
-        - run: flutter --version
-        - run: flutter test
-
-      - name: build
-        uses: actions/checkout@v3
-        uses: actions/setup-java@v2
-        - run: flutter build apk
-        - run: flutter build appbundle
+        run: flutter --version
+        run: flutter test
+        
+      - 
+        name: build
+          uses: actions/checkout@v3
+          uses: actions/setup-java@v2
+          - run: flutter build apk
+          - run: flutter build appbundle
 
