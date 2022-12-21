@@ -23,20 +23,12 @@ jobs:
         with:
           flutter-version: '3.0.5'
           channel: 'stable'
+          cache: true
+          cache-key: flutter-:os:-:channel:-:version:-:arch:-:hash:-${{ hashFiles('**/pubspec.lock') }}
+
       - name: test 
         run: flutter test
-      - name: Cache Flutter
-        id: cache-flutter
-        uses: actions/cache@v3.2.0-beta.1
-        with:
-          path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.OS }}-flutter-install-cache-3.0.5
-      
-      - if: ${{ steps.cache-flutter.outputs.cache-hit != 'true' }}
-        name: List the state of flutter
-        continue-on-error: true
-        run: echo "cache not found"
-        
+
       - name: build
         run: |
           flutter pub get
